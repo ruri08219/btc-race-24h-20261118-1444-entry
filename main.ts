@@ -86,9 +86,12 @@ function exitOrders(state: BarsState, close: bigint, qty: bigint): SellInput[] {
   }
   const gainBps = bpsMove(entryPrice, close);
   const held = entryBar !== null ? state.seq - entryBar : 0;
-  const mustExit = gainBps >= BigInt(GAIN_BPS) || gainBps <= BigInt(-LOSS_BPS) || held >= MAX_HOLD_BARS;
+  const targetHit = gainBps >= BigInt(GAIN_BPS);
+  const stopHit = gainBps <= BigInt(-LOSS_BPS);
+  const staleHit = held >= MAX_HOLD_BARS;
+  const mustExit = targetHit || stopHit || staleHit;
   if (!mustExit) return [];
-  if (gainBps <= BigInt(-LOSS_BPS)) coolUntil = windowBar(state) + COOLDOWN_BARS;
+  if (stopHit) coolUntil = windowBar(state) + COOLDOWN_BARS;
   entryPrice = null;
   entryBar = null;
   return [{ side: 'sell', symbol: SYMBOL, qty, max_slippage_bps: MAX_SLIPPAGE_BPS }];
