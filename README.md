@@ -19,8 +19,10 @@ Wait for a deep dip, buy it with all cash, sell into the recovery:
 
 A full round trip costs roughly 26 bps in fee, slippage and pool impact, so the
 bot trades rarely — about once a day — and sits in cash the rest of the time.
-On the frozen dev window this earned about **+$17.7** net PnL in local
-backtest (official `grade-local` result below), with max drawdown ~1.5%.
+On the frozen dev window the official local grade (`grade-local`,
+`--driver process`, commit `b3da2de`) is **net PnL +$16.71 USDC** (1 round
+trip, win rate 100%, max drawdown 1.50%, fees $0.81; still +$15.89 at 2x
+fees), deterministic across two runs — comfortably above the $0 dev gate.
 
 ## Files
 
