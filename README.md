@@ -24,8 +24,8 @@ backtest (official `grade-local` result below), with max drawdown ~1.5%.
 
 ## Files
 
-- `main.py` — the bot (Python 3, standard library only).
-- `vendor/makefun_bars.py` — the kit's bars-replay/v1 shim, byte-identical.
+- `main.ts` — the bot (Node 22, erasable TypeScript, no dependencies).
+- `vendor/makefun-bars.ts` — the kit's bars-replay/v1 shim, byte-identical.
 
 ## Run locally
 
